@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Administración</title>
+</head>
+<body>
+    <h1>Registrar Administración de Medicamento</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="residente">Residente:</label>
+        <select id="residente" name="residente" required>
+            {% for residente in residentes %}
+            <option value="{{ residente.id }}">{{ residente.nombre }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="medicamento">Medicamento:</label>
+        <select id="medicamento" name="medicamento" required>
+            {% for medicamento in medicamentos %}
+            <option value="{{ medicamento.id }}">{{ medicamento.nombre }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="responsable">Responsable:</label>
+        <input type="text" id="responsable" name="responsable" required><br>
+        <label for="observaciones">Observaciones:</label>
+        <textarea id="observaciones" name="observaciones"></textarea><br>
+        <button type="submit">Guardar</button>
+    </form>
+    <a href="{% url 'lista_administraciones' %}">Volver a la Lista</a>
+</body>
+</html>

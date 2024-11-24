@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Turnos</title>
+</head>
+<body>
+    <h1>Reporte de Turnos</h1>
+
+    <!-- Formulario para filtrar por rango de fechas -->
+    <form method="GET">
+        <label for="fecha_inicio">Fecha Inicio:</label>
+        <input type="date" id="fecha_inicio" name="fecha_inicio" value="{{ fecha_inicio }}">
+        <label for="fecha_fin">Fecha Fin:</label>
+        <input type="date" id="fecha_fin" name="fecha_fin" value="{{ fecha_fin }}">
+        <button type="submit">Generar Reporte</button>
+    </form>
+
+    <!-- Tabla de turnos -->
+    <h2>Turnos</h2>
+    <table border="1">
+        <tr>
+            <th>Nombre del Turno</th>
+            <th>Descripción</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Personal</th>
+        </tr>
+        {% for turno in turnos %}
+        <tr>
+            <td>{{ turno.nombre }}</td>
+            <td>{{ turno.descripcion }}</td>
+            <td>{{ turno.fecha_inicio }}</td>
+            <td>{{ turno.fecha_fin }}</td>
+            <td>{{ turno.personal.nombre }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Tabla de horas trabajadas -->
+    <h2>Horas Trabajadas por Empleado</h2>
+    <table border="1">
+        <tr>
+            <th>Empleado</th>
+            <th>Total Horas</th>
+        </tr>
+        {% for reporte in reporte_horas %}
+        <tr>
+            <td>{{ reporte.personal__nombre }}</td>
+            <td>{{ reporte.total_horas }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

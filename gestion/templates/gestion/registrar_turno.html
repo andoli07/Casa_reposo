@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Turno</title>
+</head>
+<body>
+    <h1>Registrar Turno</h1>
+    {% if error %}
+        <div style="color: red;">
+            <p>Error al guardar el turno:</p>
+            <ul>
+                {% for msg in error %}
+                    <li>{{ msg }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br>
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion"></textarea><br>
+        <label for="fecha_inicio">Fecha y Hora de Inicio:</label>
+        <input type="datetime-local" id="fecha_inicio" name="fecha_inicio" required><br>
+        <label for="fecha_fin">Fecha y Hora de Fin:</label>
+        <input type="datetime-local" id="fecha_fin" name="fecha_fin" required><br>
+        <label for="personal">Personal:</label>
+        <select id="personal" name="personal" required>
+            {% for persona in personal %}
+            <option value="{{ persona.id }}">{{ persona.nombre }}</option>
+            {% endfor %}
+        </select><br>
+        <button type="submit">Guardar</button>
+    </form>
+    <a href="{% url 'lista_turnos' %}">Volver a la Lista</a>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Administraciones</title>
+</head>
+<body>
+    <h1>Administraciones de Medicamentos</h1>
+    <table>
+        <tr>
+            <th>Residente</th>
+            <th>Medicamento</th>
+            <th>Fecha y Hora</th>
+            <th>Responsable</th>
+            <th>Observaciones</th>
+        </tr>
+        {% for admin in administraciones %}
+        <tr>
+            <td>{{ admin.residente.nombre }}</td>
+            <td>{{ admin.medicamento.nombre }}</td>
+            <td>{{ admin.fecha_hora }}</td>
+            <td>{{ admin.responsable }}</td>
+            <td>{{ admin.observaciones }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'registrar_administracion' %}">Registrar Nueva Administración</a>
+</body>
+</html>

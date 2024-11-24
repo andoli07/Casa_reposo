@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Personal</title>
+</head>
+<body>
+    <h1>Lista de Personal</h1>
+    <ul>
+        {% for persona in personal %}
+            <li><a href="{% url 'detalle_personal' persona.id %}">{{ persona.nombre }} - {{ persona.rol }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'registrar_personal' %}">Registrar Nuevo Personal</a>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Medicamento</title>
+</head>
+<body>
+    <h1>Detalle del Medicamento</h1>
+    <p>Nombre: {{ medicamento.nombre }}</p>
+    <p>Descripción: {{ medicamento.descripcion }}</p>
+    <p>Dosis: {{ medicamento.dosis }}</p>
+    <p>Frecuencia: {{ medicamento.frecuencia }}</p>
+    <a href="{% url 'lista_medicamentos' %}">Volver a la lista</a>
+</body>
+</html>

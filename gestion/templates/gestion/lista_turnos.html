@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Turnos</title>
+</head>
+<body>
+    <h1>Lista de Turnos</h1>
+    <ul>
+        {% for turno in turnos %}
+            <li>
+                {{ turno.nombre }}: {{ turno.personal.nombre }} ({{ turno.fecha_inicio }} - {{ turno.fecha_fin }})
+                <p>{{ turno.descripcion }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'registrar_turno' %}">Registrar Nuevo Turno</a>
+</body>
+</html>

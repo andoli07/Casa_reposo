@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Bienvenido, {{ request.user.username }}</h1>
+    <p>Elige una opción para gestionar el sistema:</p>
+    <ul>
+        <li><a href="{% url 'lista_residentes' %}">Gestión de Residentes</a></li>
+        <li><a href="{% url 'lista_medicamentos' %}">Gestión de Medicamentos</a></li>
+        <li><a href="{% url 'lista_personal' %}">Gestión de Personal</a></li>
+        <li><a href="{% url 'lista_turnos' %}">Gestión de Turnos</a></li>
+        <li><a href="{% url 'generar_reporte' %}">Generar Reportes</a></li>
+    </ul>
+    <a href="{% url 'logout' %}">Cerrar Sesión</a>
+</body>
+</html>

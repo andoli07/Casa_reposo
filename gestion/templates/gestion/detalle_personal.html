@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Personal</title>
+</head>
+<body>
+    <h1>Detalle del Personal</h1>
+    <p>Nombre: {{ persona.nombre }}</p>
+    <p>Rol: {{ persona.rol }}</p>
+    <p>Teléfono: {{ persona.telefono }}</p>
+    <p>Turno: {{ persona.turno }}</p>
+    <a href="{% url 'lista_personal' %}">Volver a la Lista</a>
+</body>
+</html>

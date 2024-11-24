@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Residente</title>
+</head>
+<body>
+    <h1>Detalle del Residente</h1>
+    <p>Nombre: {{ residente.nombre }}</p>
+    <p>Fecha de Nacimiento: {{ residente.fecha_nacimiento }}</p>
+    <p>Historial Médico: {{ residente.historial_medico }}</p>
+    <p>Alergias: {{ residente.alergias }}</p>
+    <p>Contacto de Emergencia: {{ residente.contacto_emergencia }}</p>
+    <p>Teléfono de Emergencia: {{ residente.telefono_emergencia }}</p>
+    <a href="{% url 'lista_residentes' %}">Volver a la lista</a>
+</body>
+</html>
