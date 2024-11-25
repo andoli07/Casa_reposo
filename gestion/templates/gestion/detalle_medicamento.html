@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalle del Medicamento</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'detalle.css' %}">
 </head>
 <body>
-    <h1>Detalle del Medicamento</h1>
-    <p>Nombre: {{ medicamento.nombre }}</p>
-    <p>Descripción: {{ medicamento.descripcion }}</p>
-    <p>Dosis: {{ medicamento.dosis }}</p>
-    <p>Frecuencia: {{ medicamento.frecuencia }}</p>
-    <a href="{% url 'lista_medicamentos' %}">Volver a la lista</a>
+    <div class="card">
+        <h1>Detalle del Medicamento</h1>
+        <ul>
+            <li>Nombre: {{ medicamento.nombre }}</li>
+            <li>Descripción: {{ medicamento.descripcion }}</li>
+            <li>Dosis: {{ medicamento.dosis }}</li>
+            <li>Frecuencia: {{ medicamento.frecuencia }}</li>
+        </ul>
+        <button onclick="location.href='{% url 'lista_medicamentos' %}'">Volver a la lista</button>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

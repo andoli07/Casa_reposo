@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
 </head>
 <body>
     <h1>Bienvenido, {{ request.user.username }}</h1>
     <p>Elige una opción para gestionar el sistema:</p>
     <ul>
-        <li><a href="{% url 'lista_residentes' %}">Gestión de Residentes</a></li>
-        <li><a href="{% url 'lista_medicamentos' %}">Gestión de Medicamentos</a></li>
-        <li><a href="{% url 'lista_personal' %}">Gestión de Personal</a></li>
-        <li><a href="{% url 'lista_turnos' %}">Gestión de Turnos</a></li>
-        <li><a href="{% url 'generar_reporte' %}">Generar Reportes</a></li>
+        <li><button class="btn btn-primary w-100" onclick="location.href='{% url 'lista_residentes' %}'">Gestión de Residentes</button></li>
+        <li><button class="btn btn-primary w-100" onclick="location.href='{% url 'lista_medicamentos' %}'">Gestión de Medicamentos</button></li>
+        <li><button class="btn btn-primary w-100" onclick="location.href='{% url 'lista_personal' %}'">Gestión de Personal</button></li>
+        <li><button class="btn btn-primary w-100" onclick="location.href='{% url 'lista_turnos' %}'">Gestión de Turnos</button></li>
+        <li><button class="btn btn-primary w-100" onclick="location.href='{% url 'generar_reporte' %}'">Generar Reportes</button></li>
     </ul>
-    <a href="{% url 'logout' %}">Cerrar Sesión</a>
+    <button onclick="location.href='{% url 'logout' %}'" class="btn btn-secondary">Cerrar Sesión</button>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

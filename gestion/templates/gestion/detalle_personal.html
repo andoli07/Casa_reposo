@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalle del Personal</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'detalle.css' %}">
 </head>
 <body>
-    <h1>Detalle del Personal</h1>
-    <p>Nombre: {{ persona.nombre }}</p>
-    <p>Rol: {{ persona.rol }}</p>
-    <p>Teléfono: {{ persona.telefono }}</p>
-    <p>Turno: {{ persona.turno }}</p>
-    <a href="{% url 'lista_personal' %}">Volver a la Lista</a>
+    <div class="card">
+        <h1>Detalle del Personal</h1>
+        <ul>
+            <li>Nombre: {{ persona.nombre }}</li>
+            <li>Rol: {{ persona.rol }}</li>
+            <li>Teléfono: {{ persona.telefono }}</li>
+            <li>Turno: {{ persona.turno }}</li>
+        </ul>
+        <button onclick="location.href='{% url 'lista_personal' %}'">Volver a la Lista</button>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

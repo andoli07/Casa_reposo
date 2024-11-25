@@ -1,40 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Turno</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'registrar.css' %}">
 </head>
 <body>
-    <h1>Registrar Turno</h1>
-    {% if error %}
-        <div style="color: red;">
-            <p>Error al guardar el turno:</p>
-            <ul>
-                {% for msg in error %}
-                    <li>{{ msg }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
-    <form method="POST">
-        {% csrf_token %}
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required><br>
-        <label for="descripcion">Descripción:</label>
-        <textarea id="descripcion" name="descripcion"></textarea><br>
-        <label for="fecha_inicio">Fecha y Hora de Inicio:</label>
-        <input type="datetime-local" id="fecha_inicio" name="fecha_inicio" required><br>
-        <label for="fecha_fin">Fecha y Hora de Fin:</label>
-        <input type="datetime-local" id="fecha_fin" name="fecha_fin" required><br>
-        <label for="personal">Personal:</label>
-        <select id="personal" name="personal" required>
-            {% for persona in personal %}
-            <option value="{{ persona.id }}">{{ persona.nombre }}</option>
-            {% endfor %}
-        </select><br>
-        <button type="submit">Guardar</button>
-    </form>
-    <a href="{% url 'lista_turnos' %}">Volver a la Lista</a>
+    <div class="container mt-5">
+        <h1 class="text-center text-white">Registrar Turno</h1>
+        {% if error %}
+            <div class="alert alert-danger">
+                <p>Error al guardar el turno:</p>
+                <ul>
+                    {% for msg in error %}
+                        <li>{{ msg }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        <form method="POST" class="bg-dark p-4 rounded">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="nombre" class="form-label text-white">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="descripcion" class="form-label text-white">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" class="form-control"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="fecha_inicio" class="form-label text-white">Fecha y Hora de Inicio:</label>
+                <input type="datetime-local" id="fecha_inicio" name="fecha_inicio" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="fecha_fin" class="form-label text-white">Fecha y Hora de Fin:</label>
+                <input type="datetime-local" id="fecha_fin" name="fecha_fin" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="personal" class="form-label text-white">Personal:</label>
+                <select id="personal" name="personal" class="form-select" required>
+                    {% for persona in personal %}
+                    <option value="{{ persona.id }}">{{ persona.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success w-100">Guardar</button>
+        </form>
+        <a href="{% url 'lista_turnos' %}" class="btn btn-primary mt-3 w-100">Volver a la Lista</a>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Turnos</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lista.css' %}">
 </head>
 <body>
-    <h1>Lista de Turnos</h1>
-    <ul>
-        {% for turno in turnos %}
-            <li>
-                {{ turno.nombre }}: {{ turno.personal.nombre }} ({{ turno.fecha_inicio }} - {{ turno.fecha_fin }})
-                <p>{{ turno.descripcion }}</p>
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'registrar_turno' %}">Registrar Nuevo Turno</a>
+    <div class="container">
+        <h1>Lista de Turnos</h1>
+        <ul class="resident-list">
+            {% for turno in turnos %}
+                <li>
+                    {{ turno.nombre }}: {{ turno.personal.nombre }} ({{ turno.fecha_inicio }} - {{ turno.fecha_fin }})
+                    <p>{{ turno.descripcion }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+        <button class="btn btn-secondary w-85" onclick="location.href='{% url 'registrar_turno' %}'">Registrar Nuevo Turno</button>
+        <button class="btn btn-primary" onclick="location.href='{% url 'dashboard' %}'">Volver al centro de gestion</button>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

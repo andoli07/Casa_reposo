@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Personal</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lista.css' %}">
 </head>
 <body>
-    <h1>Lista de Personal</h1>
-    <ul>
-        {% for persona in personal %}
-            <li><a href="{% url 'detalle_personal' persona.id %}">{{ persona.nombre }} - {{ persona.rol }}</a></li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'registrar_personal' %}">Registrar Nuevo Personal</a>
+    <div class="container">
+        <h1>Lista de Personal</h1>
+        <ul class="resident-list">
+            {% for persona in personal %}
+                <li><button class="btn btn-secondary w-75" onclick="location.href='{% url 'detalle_personal' persona.id %}'">{{ persona.nombre }} - {{ persona.rol }}</button></li>
+            {% endfor %}
+        </ul>
+        <button class="btn btn-secondary w-85" onclick="location.href='{% url 'registrar_personal' %}'">Registrar Nuevo Personal</button>
+        <button class="btn btn-primary" onclick="location.href='{% url 'dashboard' %}'">Volver al centro de gestion</button>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

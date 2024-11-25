@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.utils.dateparse import parse_datetime
 # Create your models here.
 
 from django.db import models

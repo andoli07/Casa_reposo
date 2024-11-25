@@ -1,56 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reporte de Turnos</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'reporte.css' %}">
 </head>
 <body>
-    <h1>Reporte de Turnos</h1>
+    <div class="container">
+        <h1 class="text-center">Reporte de Turnos</h1>
 
-    <!-- Formulario para filtrar por rango de fechas -->
-    <form method="GET">
-        <label for="fecha_inicio">Fecha Inicio:</label>
-        <input type="date" id="fecha_inicio" name="fecha_inicio" value="{{ fecha_inicio }}">
-        <label for="fecha_fin">Fecha Fin:</label>
-        <input type="date" id="fecha_fin" name="fecha_fin" value="{{ fecha_fin }}">
-        <button type="submit">Generar Reporte</button>
-    </form>
+        <!-- Formulario para filtrar por rango de fechas -->
+        <form method="GET" class="bg-dark p-3 rounded mb-4">
+            <div class="form-group">
+                <label for="fecha_inicio" class="text-light">Fecha Inicio:</label>
+                <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control bg-secondary text-light" value="{{ fecha_inicio }}">
+            </div>
+            <div class="form-group">
+                <label for="fecha_fin" class="text-light">Fecha Fin:</label>
+                <input type="date" id="fecha_fin" name="fecha_fin" class="form-control bg-secondary text-light" value="{{ fecha_fin }}">
+            </div>
+            <button type="submit" class="btn btn-success">Generar Reporte</button>
+        </form>
 
-    <!-- Tabla de turnos -->
-    <h2>Turnos</h2>
-    <table border="1">
-        <tr>
-            <th>Nombre del Turno</th>
-            <th>Descripción</th>
-            <th>Fecha Inicio</th>
-            <th>Fecha Fin</th>
-            <th>Personal</th>
-        </tr>
-        {% for turno in turnos %}
-        <tr>
-            <td>{{ turno.nombre }}</td>
-            <td>{{ turno.descripcion }}</td>
-            <td>{{ turno.fecha_inicio }}</td>
-            <td>{{ turno.fecha_fin }}</td>
-            <td>{{ turno.personal.nombre }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+        <!-- Tabla de turnos -->
+        <h2 class="text-center text-light">Turnos</h2>
+        <table class="table table-dark table-bordered">
+            <thead>
+                <tr>
+                    <th>Nombre del Turno</th>
+                    <th>Descripción</th>
+                    <th>Fecha Inicio</th>
+                    <th>Fecha Fin</th>
+                    <th>Personal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for turno in turnos %}
+                <tr>
+                    <td>{{ turno.nombre }}</td>
+                    <td>{{ turno.descripcion }}</td>
+                    <td>{{ turno.fecha_inicio }}</td>
+                    <td>{{ turno.fecha_fin }}</td>
+                    <td>{{ turno.personal.nombre }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
-    <!-- Tabla de horas trabajadas -->
-    <h2>Horas Trabajadas por Empleado</h2>
-    <table border="1">
-        <tr>
-            <th>Empleado</th>
-            <th>Total Horas</th>
-        </tr>
-        {% for reporte in reporte_horas %}
-        <tr>
-            <td>{{ reporte.personal__nombre }}</td>
-            <td>{{ reporte.total_horas }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+        <!-- Tabla de horas trabajadas -->
+        <h2 class="text-center text-light">Horas Trabajadas por Empleado</h2>
+        <table class="table table-dark table-bordered">
+            <thead>
+                <tr>
+                    <th>Empleado</th>
+                    <th>Total Horas</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reporte in reporte_horas %}
+                <tr>
+                    <td>{{ reporte.personal__nombre }}</td>
+                    <td>{{ reporte.total_horas }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button class="btn btn-primary" onclick="location.href='{% url 'dashboard' %}'">Volver al centro de gestion</button>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

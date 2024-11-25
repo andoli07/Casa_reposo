@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.utils.dateparse import parse_datetime
 
 # Create your views here
 @login_required
@@ -23,26 +24,32 @@ def logout_view(request):
 def dashboard(request):
     return render(request, 'gestion/dashboard.html')
 
+@login_required
 def lista_residentes(request):
     residentes = Residente.objects.all()
     return render(request, 'gestion/lista_residentes.html', {'residentes': residentes})
 
+@login_required
 def detalle_residente(request, id):
     residente = get_object_or_404(Residente, id=id)
     return render(request, 'gestion/detalle_residente.html', {'residente': residente})
 
+@login_required
 def lista_medicamentos(request):
     medicamentos = Medicamento.objects.all()
     return render(request, 'gestion/lista_medicamentos.html', {'medicamentos': medicamentos})
 
+@login_required
 def detalle_medicamento(request, id):
     medicamento = get_object_or_404(Medicamento, id=id)
     return render(request, 'gestion/detalle_medicamento.html', {'medicamento': medicamento})
 
+@login_required
 def lista_administraciones(request):
     administraciones = AdministracionMedicamento.objects.all()
     return render(request, 'gestion/lista_administraciones.html', {'administraciones': administraciones})
 
+@login_required
 def registrar_administracion(request):
     if request.method == 'POST':
         residente_id = request.POST['residente']
@@ -63,15 +70,17 @@ def registrar_administracion(request):
     return render(request, 'gestion/registrar_administracion.html', {'residentes': residentes, 'medicamentos': medicamentos})
 
 #Personal
-
+@login_required
 def lista_personal(request):
     personal = Personal.objects.all()
     return render(request, 'gestion/lista_personal.html', {'personal': personal})
 
+@login_required
 def detalle_personal(request, id):
     persona = get_object_or_404(Personal, id=id)
     return render(request, 'gestion/detalle_personal.html', {'persona': persona})
 
+@login_required
 def registrar_personal(request):
     if request.method == 'POST':
         nombre = request.POST['nombre']
@@ -91,10 +100,12 @@ def registrar_personal(request):
 
 #Turno
 
+@login_required
 def lista_turnos(request):
     turnos = Turno.objects.all()
     return render(request, 'gestion/lista_turnos.html', {'turnos': turnos})
 
+@login_required
 def registrar_turno(request):
     if request.method == 'POST':
         nombre = request.POST['nombre']
@@ -102,6 +113,16 @@ def registrar_turno(request):
         fecha_inicio = request.POST['fecha_inicio']
         fecha_fin = request.POST['fecha_fin']
         personal_id = request.POST['personal']
+
+        # Convertir fechas a objetos datetime
+        fecha_inicio = parse_datetime(fecha_inicio)
+        fecha_fin = parse_datetime(fecha_fin)
+
+        if fecha_inicio is None or fecha_fin is None:
+            # Mostrar mensaje de error si el formato de fecha es inválido
+            return render(request, 'gestion/turno_form.html', {
+                'error': 'Formato de fecha inválido.'
+            })
 
         turno = Turno(
             nombre=nombre,
@@ -123,7 +144,7 @@ def registrar_turno(request):
     return render(request, 'gestion/registrar_turno.html', {'personal': Personal.objects.all()})
 
 #Reporte
-
+@login_required
 def generar_reporte(request):
     # Filtrar turnos por rango de fechas si se proporcionan
     fecha_inicio = request.GET.get('fecha_inicio')

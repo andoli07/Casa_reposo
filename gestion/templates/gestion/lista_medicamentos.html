@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Medicamentos</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lista.css' %}">
 </head>
 <body>
-    <h1>Lista de Medicamentos</h1>
-    <ul>
-        {% for medicamento in medicamentos %}
-            <li>
-                <a href="{% url 'detalle_medicamento' medicamento.id %}">
-                    {{ medicamento.nombre }}
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <h1>Lista de Medicamentos</h1>
+        <ul class="resident-list">
+            {% for medicamento in medicamentos %}
+                <li><button class="btn btn-secondary w-75" onclick="location.href='{% url 'detalle_medicamento' medicamento.id %}'" >{{ medicamento.nombre }}</button></li>
+            {% endfor %}
+        </ul>
+        <button class="btn btn-primary" onclick="location.href='{% url 'dashboard' %}'">Volver al centro de gestion</button>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

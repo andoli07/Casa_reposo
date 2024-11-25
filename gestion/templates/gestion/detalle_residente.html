@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalle del Residente</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'detalle.css' %}">
 </head>
 <body>
-    <h1>Detalle del Residente</h1>
-    <p>Nombre: {{ residente.nombre }}</p>
-    <p>Fecha de Nacimiento: {{ residente.fecha_nacimiento }}</p>
-    <p>Historial Médico: {{ residente.historial_medico }}</p>
-    <p>Alergias: {{ residente.alergias }}</p>
-    <p>Contacto de Emergencia: {{ residente.contacto_emergencia }}</p>
-    <p>Teléfono de Emergencia: {{ residente.telefono_emergencia }}</p>
-    <a href="{% url 'lista_residentes' %}">Volver a la lista</a>
+    <div class="card">
+        <h1>Detalle del Residente</h1>
+        <ul>
+            <li>Nombre: {{ residente.nombre }}</li>
+            <li>Fecha de Nacimiento: {{ residente.fecha_nacimiento }}</li>
+            <li>Historial Médico: {{ residente.historial_medico }}</li>
+            <li>Alergias: {{ residente.alergias }}</li>
+            <li>Contacto de Emergencia: {{ residente.contacto_emergencia }}</li>
+            <li>Teléfono de Emergencia: {{ residente.telefono_emergencia }}</li>
+        </ul>
+        <button onclick="location.href='{% url 'lista_residentes' %}'">Volver a la lista</button>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>
+

@@ -1,0 +1,84 @@
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 1rem;
+}
+
+h1, h2 {
+    color: #ffffff;
+}
+
+form {
+    background-color: #1e1e1e;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
+}
+
+label {
+    font-weight: bold;
+    color: #e0e0e0;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input[type="date"] {
+    background-color: #333333;
+    color: #e0e0e0;
+    border: 1px solid #444444;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+button {
+    background-color: #6200ea;
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: #3700b3;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+}
+
+th, td {
+    border: 1px solid #444444;
+    padding: 0.75rem;
+    text-align: left;
+}
+
+th {
+    background-color: #333333;
+    color: #e0e0e0;
+}
+
+td {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+.btn-primary {
+    background-color: #6200ea;
+    border-color: #6200ea;
+    font-size: 1rem;
+}
+
+.btn-primary:hover {
+    background-color: #3700b3;
+    border-color: #3700b3;
+}

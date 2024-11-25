@@ -1,24 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Personal</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'registrar.css' %}">
 </head>
 <body>
-    <h1>Registrar Personal</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required><br>
-        <label for="rol">Rol:</label>
-        <input type="text" id="rol" name="rol" required><br>
-        <label for="telefono">Teléfono:</label>
-        <input type="text" id="telefono" name="telefono" required><br>
-        <label for="turno">Turno:</label>
-        <input type="text" id="turno" name="turno" required><br>
-        <button type="submit">Guardar</button>
-    </form>
-    <a href="{% url 'lista_personal' %}">Volver a la Lista</a>
+    <div class="container mt-5">
+        <h1 class="text-center text-white">Registrar Personal</h1>
+        {% if error %}
+            <div class="alert alert-danger">
+                <p>Error al guardar el personal:</p>
+                <ul>
+                    {% for msg in error %}
+                        <li>{{ msg }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        <form method="POST" class="bg-dark p-4 rounded">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="nombre" class="form-label text-white">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="rol" class="form-label text-white">Rol:</label>
+                <input type="text" id="rol" name="rol" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="telefono" class="form-label text-white">Teléfono:</label>
+                <input type="text" id="telefono" name="telefono" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="turno" class="form-label text-white">Turno:</label>
+                <input type="text" id="turno" name="turno" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-success w-100">Guardar</button>
+        </form>
+        <a href="{% url 'lista_personal' %}" class="btn btn-primary mt-3 w-100">Volver a la Lista</a>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>
