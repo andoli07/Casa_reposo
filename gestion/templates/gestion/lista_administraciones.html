@@ -1,30 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Administraciones</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'administraciones.css' %}">
 </head>
 <body>
-    <h1>Administraciones de Medicamentos</h1>
-    <table>
-        <tr>
-            <th>Residente</th>
-            <th>Medicamento</th>
-            <th>Fecha y Hora</th>
-            <th>Responsable</th>
-            <th>Observaciones</th>
-        </tr>
-        {% for admin in administraciones %}
-        <tr>
-            <td>{{ admin.residente.nombre }}</td>
-            <td>{{ admin.medicamento.nombre }}</td>
-            <td>{{ admin.fecha_hora }}</td>
-            <td>{{ admin.responsable }}</td>
-            <td>{{ admin.observaciones }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    <a href="{% url 'registrar_administracion' %}">Registrar Nueva Administración</a>
+    <div class="container">
+        <h1>Administraciones de Medicamentos</h1>
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-striped table-bordered table-dark">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Residente</th>
+                            <th>Medicamento</th>
+                            <th>Fecha y Hora</th>
+                            <th>Responsable</th>
+                            <th>Observaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for admin in administraciones %}
+                        <tr>
+                            <td>{{ admin.residente.nombre }}</td>
+                            <td>{{ admin.medicamento.nombre }}</td>
+                            <td>{{ admin.fecha_hora }}</td>
+                            <td>{{ admin.responsable }}</td>
+                            <td>{{ admin.observaciones }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn btn-success" onclick="location.href='{% url 'registrar_administracion' %}'">Registrar Nueva Administración</button>
+        </div>
+        
+        <button class="btn btn-primary" onclick="location.href='{% url 'dashboard' %}'">Volver al centro de gestion</button>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

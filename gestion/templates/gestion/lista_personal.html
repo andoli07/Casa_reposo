@@ -16,7 +16,7 @@
                 <li><button class="btn btn-secondary w-75" onclick="location.href='{% url 'detalle_personal' persona.id %}'">{{ persona.nombre }} - {{ persona.rol }}</button></li>
             {% endfor %}
         </ul>
-        <button class="btn btn-secondary w-85" onclick="location.href='{% url 'registrar_personal' %}'">Registrar Nuevo Personal</button>
+        <button class="btn btn-success w-85" onclick="location.href='{% url 'registrar_personal' %}'">Registrar Nuevo Personal</button>
         <button class="btn btn-primary" onclick="location.href='{% url 'dashboard' %}'">Volver al centro de gestion</button>
     </div>
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>

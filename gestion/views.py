@@ -52,9 +52,9 @@ def lista_administraciones(request):
 @login_required
 def registrar_administracion(request):
     if request.method == 'POST':
-        residente_id = request.POST['residente']
-        medicamento_id = request.POST['medicamento']
-        responsable = request.POST['responsable']
+        residente_id = request.POST.get('residente')
+        medicamento_id = request.POST.get('medicamento')
+        responsable = request.POST.get('responsable')
         observaciones = request.POST.get('observaciones', '')
 
         AdministracionMedicamento.objects.create(
