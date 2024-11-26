@@ -48,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'hogar_reposo.middleware.AutoLogoutMiddleware',
 ]
 
 ROOT_URLCONF = 'hogar_reposo.urls'
@@ -112,6 +113,8 @@ USE_I18N = True
 
 USE_TZ = True
 
+SESSION_COOKIE_AGE = 900 # 15 minutos
+SESSION_SAVE_EVERY_REQUEST = True 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
